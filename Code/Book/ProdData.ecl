@@ -1,7 +1,7 @@
-﻿IMPORT $, Std, $.^.Util, $.^.Hour1;
+﻿IMPORT $, Std, $.^.Util;
 
 // Vertical "slice" to extract just the required information and calculate the duration of each trip
-Tbl1 := TABLE(Hour1.TaxiData.File,{RecID,trip_distance,puLocationID,doLocationID,fare_amount, 
+Tbl1 := TABLE($.TaxiData.File,{RecID,trip_distance,puLocationID,doLocationID,fare_amount, 
                                    UNSIGNED1 puHour   := Std.Date.Hour(tpep_pickup_time), 
                                    UNSIGNED1 puDOW    := Std.Date.DayOfWeek(tpep_pickup_date),
                                    UNSIGNED8 Duration := Util.TripTime(tpep_pickup_date,tpep_pickup_time, tpep_dropoff_date, tpep_dropoff_time)}); 
